@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# ">
+  <head> 
+    <meta charset="utf-8" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-62912293-4"></script>
+<script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments)};gtag("js", new Date());gtag("config", "UA-62912293-4", {"groups":"default","anonymize_ip":true});</script>
+<meta name="title" content="IoT Based Inventory Management System using Load Cell and NodeMCU" />
+<link rel="canonical" href="https://iotdesignpro.com/projects/iot-based-inventory-management-system-using-load-cell-and-nodemcu" />
+<meta name="description" content="In this tutorial, we made an Internet of Things and sensors based Automated Inventory management system with the help of the popular NodeMCU ESP8266 microcontroller" />
+<meta name="abstract" content="Internet of Things and sensors based Automated Inventory management system with the help of the popular NodeMCU ESP8266 microcontroller" />
+<link rel="image_src" href="https://www.iotdesignpro.com/sites/default/files/main-image/IoT-Based-Inventory-Management-System.jpg" />
+<meta name="keywords" content="Inventory Management System, Automatic Inventory management system, inventory management system using IoT, IoT based inventory management system, IoT projects, DIY Projects, Automated Inventory Management System" />
+<meta name="Generator" content="Drupal 8 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="shortcut icon" href="/sites/default/files/iotdesignpro_fevicon.png" type="image/png" />
+
+    
+    <title>IoT Based Inventory Management System using Load Cell and NodeMCU</title>
+    <link rel="stylesheet" href="/sites/default/files/css/css_Jsb8A735wKc-D-nbOjXQpcFuytglWdE5Z0Bvebhh1FA.css?tl3swh" media="all" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,500,600,700" media="all" />
+<link rel="stylesheet" href="/sites/default/files/css/css_wKv1v0MUjY6bZUHYGLAK9GgRzAsrBXJuXXgfGQ-9KWo.css?tl3swh" media="all" />
+
+    <script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","scriptPath":null,"pathPrefix":"","currentPath":"node\/310","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"en"},"pluralDelimiter":"\u0003","google_analytics":{"account":"UA-62912293-4","trackOutbound":true,"trackMailto":true,"trackDownload":true,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip"},"ajaxTrustedUrl":{"form_action_p_pvdeGsVG5zNF_XLGPTvYSKCf43t8qZYSwcfZl2uzM":true,"\/search\/node":true},"statistics":{"data":{"nid":"310"},"url":"\/core\/modules\/statistics\/statistics.php"},"layzy_load":"off","gavias_load_ajax_view":"\/custom\/gavias_hook\/ajax_view","user":{"uid":0,"permissionsHash":"cf1625ac2d6321455474d59ee925fbc1ad3f63548cc78d12d7ed77002222bd07"}}</script>
+
+<!--[if lte IE 8]>
+<script src="/sites/default/files/js/js_VtafjXmRvoUgAzqzYTA3Wrjkx9wcWhjP0G4ZnnqRamA.js"></script>
+<![endif]-->
+<script src="/sites/default/files/js/js_WQfFze0WkO2sTUVSTeyapBleYX4q_VIWlhdwbrnknt8.js"></script>
+<script src="https://kit.fontawesome.com/641947e0fa.js"></script>
+
+    
+    
+
+    <link rel="stylesheet" href="https://iotdesignpro.com/themes/gavias_sancy/css/custom.css" media="screen" />
+    <link rel="stylesheet" href="https://iotdesignpro.com/themes/gavias_sancy/css/update.css" media="screen" />
+    
+    
+
+          <style class="customize"> </style>
+    
+     
+	
+  <script data-ad-client="ca-pub-4104019148699772" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+  <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
+<script>
+  window.googletag = window.googletag || {cmd: []};
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/21034905/iotdesignpro_boombox1', [300, 250], 'div-gpt-ad-1579778711109-0').addService(googletag.pubads());
+	googletag.defineSlot('/21034905/cd_small_leaderboard_banner_mobile', [300, 90], 'div-gpt-ad-1619520139575-0').addService(googletag.pubads());
+	googletag.defineSlot('/21034905/Leaderboard_2', [728, 90], 'div-gpt-ad-1575031687404-0').addService(googletag.pubads());
+  googletag.defineSlot('/21034905/Welcome_Ad3', [640, 480], 'div-gpt-ad-1632744355244-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.enableServices();
+  });
+</script>
+  
+<script src="https://di.oemsecrets.com/js/distributor-inventory_0.3.0.min.js"></script>
+<link href="https://di.oemsecrets.com/css/distributor-inventory_0.0.4.min.css" rel="stylesheet">
+  
+  </head>
+    <body class="gavias-content-builder layout-no-sidebars not-preloader layout-page- body-background-dark path-node node--type-article">
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    <div class="body-page">
+	       <header id="header" class="header-v2">
+  
+  
+  <!-- <div class="gv-sticky-menu"> -->
+  <div class="topbar">
+  <div class="container">
+    <div class="row">
+      
+      <div class="topbar-left col-sm-8 col-xs-12">
+                  <div class="breaking-news">
+            <div class="clearfix">
+              <div class="content-inner">  <div>
+    <div id="block-breakingnews" class="block block-block-content block-block-contentbbc32886-80e3-477c-a04a-de019e571939 no-title">
+  
+    
+      <div class="content block-content">
+      
+            <div class="field field--name-body field--type-text-with-summary field--label-hidden field__item"><p><a href="https://iotdesignpro.com/about-us">About Us</a>      <a href="https://iotdesignpro.com/contact">Contact</a></p></div>
+      
+    </div>
+  </div>
+
+  </div>
+</div> 
+            </div> 
+          </div>
+              </div>
+
+      <div class="topbar-right col-sm-4 col-xs-12">
+        <div class="social-list">
+                      <a href="https://www.facebook.com/IoT-Design-Pro-284393472235331/"><i class="fa fa-facebook"></i></a>
+           
+                      <a href="https://twitter.com/IoTDesignPro1"><i class="fa fa-twitter-square"></i></a>
+           
+           
+           
+           
+           
+                      <a href="https://www.pinterest.com/iotdesignpro"><i class="fa fa-pinterest"></i></a>
+           
+           
+           
+            
+            
+        </div>  
+      </div>
+    </div>
+  </div>  
+</div>
+  <!-- </div> -->
+
+
+
+  <div class="scroll_page_title_div">
+    <img src="/sites/default/files/IoTdesignpro-logo.png" alt="Home" class="social_logo">
+    <p class="scroll_page_title_text">IoT Based Inventory Management System using Load Cell and NodeMCU</p>
+  </div>
+
+
+  <div class="header-bottom gv-sticky-menu">
+      <div class="social_icons">
+        <img src="/sites/default/files/IoTdesignpro-logo.png" alt="Home" class="social_logo">
+        <div class="social_txt">
+          <p>Have any questions? Ask our community </p>
+          <div>
+            <a href="https://chat.whatsapp.com/JR4e0Fc0V20H6jTMDd1daT" target="_blank"><i class="fa fa-whatsapp"></i></a>
+            <a href="https://t.me/circuitdigest" target="_blank"><i class="fa fa-telegram"></i></a>
+            <a href="https://discord.com/invite/UXJrFJSWpz" target="_blank"><i class="fa-brands fa-discord"></i></a>
+          </div>
+        </div>
+    </div>
+
+    <div class="main-menu">
+      <div class="container">
+        <div class="header-main-inner">
+          <div class="row">
+            <div class="col-lg-2 col-md-2 col-xs-5">
+                                <div>
+    <div id="block-gavias-sancy-branding" class="clearfix site-branding block block-system block-system-branding-block no-title">
+  
+    
+        <a href="/" title="Home" rel="home" class="site-branding-logo">
+        
+        <img src="/sites/default/files/IoTdesignpro-logo.png" alt="Home" />
+        
+    </a>
+    </div>
+
+  </div>
+
+                  
+            </div>
+            <div class="col-lg-10 col-md-10 col-xs-7 area-main-menu">
+              <div class="area-inner menu-hover">
+                <div class="gva-offcanvas-inner">
+                  <div class="close-offcanvas hidden-lg hidden-md"><a><i class="gv-icon-4"></i></a></div>
+                                        <div>
+    <nav role="navigation" aria-labelledby="block-gavias-sancy-main-menu-menu" id="block-gavias-sancy-main-menu" class="block block-menu navigation menu--main">
+          
+  
+  <h2  class="visually-hidden block-title block-title" id="block-gavias-sancy-main-menu-menu"><span>Main navigation</span></h2>
+  
+  <div class="block-content">
+                 
+<div class="gva-navigation">
+
+              <ul class="clearfix gva_menu gva_menu_main">
+                                      <li  class="menu-item ">
+        <a href="https://iotdesignpro.com/articles">
+                    Articles
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="/news">
+                    News
+            
+        </a>
+          
+              </li>
+                         
+         
+                          <li  class="menu-item menu-item--expanded digikey-menu gva-mega-menu megamenu menu-grid menu-columns-4">
+        <a href="https://www.win-source.net">
+                    Winsource
+                      <span class="icaret nav-plus nav-plus fa fa-angle-down"></span>
+            
+        </a>
+          
+                                <ul class="menu sub-menu">
+                                      <li  class="menu-item">
+        <a href="https://bit.ly/4ej40s8">
+                    Integrated Circuits (ICs)
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="https://bit.ly/3OfKfY4">
+                    Power Supplies - Board Mount
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="https://bit.ly/3Qkhytr">
+                    Optoelectronics
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="https://bit.ly/4coxLW7">
+                    Sensors, Transducers
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="https://bit.ly/4c8O3DC">
+                    Connectors, Interconnects
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="https://bit.ly/4epyTLs">
+                    Circuit Protection
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="https://bit.ly/4sx1YrV">
+                    Memory Cards, Modules
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="https://bit.ly/4coxDG7">
+                    Discrete Semiconductor Products
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="https://bit.ly/481Rzx8">
+                    RF/IF and RFID
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="https://bit.ly/4tcoMOS">
+                    Capacitors
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="https://bit.ly/4srGigL">
+                    Resistors
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="https://bit.ly/4vr2SsJ">
+                    Crystals, Oscillators and Resonators
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="https://bit.ly/3ODN84W">
+                    Inductors, Coils, Chokes
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="https://bit.ly/4t3aTlW">
+                    Cable Assemblies
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="https://bit.ly/41zWhOW">
+                    Industrial Controls, Meters
+            
+        </a>
+          
+              </li>
+        </ul>
+  
+              </li>
+                                  <li  class="menu-item menu-item--expanded ">
+        <a href="https://iotdesignpro.com/iot-projects">
+                    IoT Projects
+                      <span class="icaret nav-plus nav-plus fa fa-angle-down"></span>
+            
+        </a>
+          
+                                <ul class="menu sub-menu">
+                                      <li  class="menu-item">
+        <a href="/iot-arduino-projects">
+                    Arduino
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="/esp8266-projects">
+                    ESP8266
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="/esp32-projects">
+                    ESP32
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="/raspberry-pi-projects">
+                    Raspberry Pi
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="/iot-home-automation-projects">
+                    Home Automation
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="/wearable-technology">
+                    Wearable IoT
+            
+        </a>
+          
+              </li>
+        </ul>
+  
+              </li>
+                                  <li  class="menu-item menu-item--expanded ">
+        <a href="">
+                    Wireless Protocols
+                      <span class="icaret nav-plus nav-plus fa fa-angle-down"></span>
+            
+        </a>
+          
+                                <ul class="menu sub-menu">
+                                      <li  class="menu-item">
+        <a href="/nfc">
+                    NFC
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="/bluetooth">
+                    Bluetooth
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="/rf">
+                    RF
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="/zigbee">
+                    Zigbee
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="/lora">
+                    LoRa
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="/sigfox">
+                    Sigfox
+            
+        </a>
+          
+              </li>
+        </ul>
+  
+              </li>
+                                  <li  class="menu-item menu-item--expanded ">
+        <a href="">
+                    IoT Platforms
+                      <span class="icaret nav-plus nav-plus fa fa-angle-down"></span>
+            
+        </a>
+          
+                                <ul class="menu sub-menu">
+                                      <li  class="menu-item">
+        <a href="/thingspeak-projects">
+                    Thingspeak
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="/node-red">
+                    Node-RED
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="/google-cloud">
+                    Google Cloud
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="/amazon-aws">
+                    Amazon AWS
+            
+        </a>
+          
+              </li>
+                                  <li  class="menu-item">
+        <a href="/microsoft">
+                    Microsoft Azure
+            
+        </a>
+          
+              </li>
+        </ul>
+  
+              </li>
+        </ul>
+  
+
+</div>
+
+        </div>  
+</nav>
+
+  </div>
+
+                    
+                                      <div class="after-offcanvas hidden-lg hidden-md">
+                        <div>
+    <div class="views-element-container block block-views block-views-blockrecent-posts-block-1" id="block-gavias-sancy-views-block-recent-posts-block-1">
+  
+      <h2 class="block-title" ><span>Recent Posts</span></h2>
+    
+      <div class="content block-content">
+      <div><div class="js-view-dom-id-dd4a31ec705bb4d7116c6a8da947f215fe2467323977e9ac00bf6711452cdacd">
+  
+  
+  
+
+  
+  
+  
+
+  <div class="view-content-wrap " data-items="">
+             <div class="item">
+       <div class="views-field views-field-field-image"><div class="field-content">  <a href="/news/win-source-to-showcase-in-electronica-2026"><img src="/sites/default/files/main-image/electronica-2026.jpg" alt="WIN SOURCE to Showcase in electronica 2026" title="WIN SOURCE to Showcase in electronica 2026" typeof="foaf:Image" />
+</a>
+</div></div><div><h3><a href="/news/win-source-to-showcase-in-electronica-2026" hreflang="en">WIN SOURCE to Showcase Electronic Component Sourcing and Supply Chain Solutions at electronica 2026</a></h3></div><div class="views-field views-field-nothing"><span class="field-content"><br /></span></div>
+     </div>
+             <div class="item">
+       <div class="views-field views-field-field-image"><div class="field-content">  <a href="/news/synaptics-launches-veros-wi-fi-7-soc-family-designed-for-iot-applications"><img src="/sites/default/files/main-image/IDP%20-%20Synaptics%20Launches%20Veros%20Wi-Fi%207%20SoC%20Family%20Designed%20for%20IoT%20Applications.png" alt="Synaptics Launches Veros Wi-Fi 7 SoC Family" title="Synaptics Launches Veros Wi-Fi 7 SoC Family" typeof="foaf:Image" />
+</a>
+</div></div><div><h3><a href="/news/synaptics-launches-veros-wi-fi-7-soc-family-designed-for-iot-applications" hreflang="en">Synaptics Launches Veros Wi-Fi 7 SoC Family Designed for IoT Applications</a></h3></div><div class="views-field views-field-nothing"><span class="field-content"><br /></span></div>
+     </div>
+             <div class="item">
+       <div class="views-field views-field-field-image"><div class="field-content">  <a href="/news/sentrycs-and-xtend-partner-to-strengthen-drone-security-for-defense-and-special-forces"><img src="/sites/default/files/main-image/IDP%20-%20Sentrycs%20and%20Xtend.png" alt="Sentrycs Partners With Xtend for Drone Security Enhancement" title="Sentrycs Partners With Xtend for Drone Security Enhancement" typeof="foaf:Image" />
+</a>
+</div></div><div><h3><a href="/news/sentrycs-and-xtend-partner-to-strengthen-drone-security-for-defense-and-special-forces" hreflang="en">Sentrycs and Xtend Partner to Strengthen Drone Security for Defense and Special Forces</a></h3></div><div class="views-field views-field-nothing"><span class="field-content"><br /></span></div>
+     </div>
+             <div class="item">
+       <div class="views-field views-field-field-image"><div class="field-content">  <a href="/news/csignum-raises-6m-euro-in-series-a-funding-to-expand-underwater-iot-communication-technology"><img src="/sites/default/files/main-image/IDP%20-%20CSignum%20Raises%20%C2%A36M%20Series%20A%20to%20Expand%20Underwater%20IoT%20Communication%20Technology.png" alt="CSignum Secures £6M in Series A Funding" title="CSignum Secures £6M in Series A Funding" typeof="foaf:Image" />
+</a>
+</div></div><div><h3><a href="/news/csignum-raises-6m-euro-in-series-a-funding-to-expand-underwater-iot-communication-technology" hreflang="en">CSignum Raises £6M in Series A Funding to Expand Underwater IoT Communication Technology</a></h3></div><div class="views-field views-field-nothing"><span class="field-content"><br /></span></div>
+     </div>
+             <div class="item">
+       <div class="views-field views-field-field-image"><div class="field-content">  <a href="/news/aaeon-and-fetci-launch-ai-automatic-license-plate-recognition-transport-solution-across-asia"><img src="/sites/default/files/main-image/IDP%20-%20AAEON%20and%20FETCi%20Launch%20AI%20Automatic%20License%20Plate%20Recognition%20Transport%20Solution%20Across%20Asia.png" alt="AAEON and FETCi Collaborates to Provide Smart Transport Services Across Asia " title="AAEON and FETCi Collaborates to Provide Smart Transport Services Across Asia " typeof="foaf:Image" />
+</a>
+</div></div><div><h3><a href="/news/aaeon-and-fetci-launch-ai-automatic-license-plate-recognition-transport-solution-across-asia" hreflang="en">AAEON and FETCi Launch AI Automatic License Plate Recognition Transport Solution Across Asia</a></h3></div><div class="views-field views-field-nothing"><span class="field-content"><br /></span></div>
+     </div>
+   </div>
+  
+  
+
+  
+  
+
+  
+  
+</div>
+</div>
+
+    </div>
+  </div>
+
+  </div>
+
+                    </div>
+                                 </div>
+                
+                <div id="menu-bar" class="menu-bar mobile hidden-lg hidden-md">
+                  <span class="one"></span>
+                  <span class="two"></span>
+                  <span class="three"></span>
+                </div>
+
+                                  <div class="menu-another hidden-xs hidden-sm">
+                      <div id="menu-bar-another" class="menu-bar">
+                        <span class="fa fa-user" style="color: black; margin-top: 8px; height: 0px;"></span>
+					<span class="one" style="display: none;"></span>
+                    <span class="two" style="display: none;"></span>
+                    <span class="three" style="display: none;"></span>
+                      </div>
+                    <div class="content-inner">
+                        <div>
+    <nav role="navigation" aria-labelledby="block-useraccountmenu-menu" id="block-useraccountmenu" class="block block-menu navigation menu--account">
+          
+  
+  <h2  class="visually-hidden block-title block-title" id="block-useraccountmenu-menu"><span>User account menu</span></h2>
+  
+  <div class="block-content">
+                 
+              <ul class="gva_menu">
+        
+       
+      <li  class="menu-item">
+        <a href="/login">Log in</a>
+        
+      </li>
+        </ul>
+  
+
+
+        </div>  
+</nav>
+
+  </div>
+
+                    </div>
+                  </div>  
+                
+                                  <div class="gva-search-region search-region">
+                    <span class="icon"><i class="fa fa-search"></i></span>
+                    <div class="search-content">
+                      <a class="close"><i class="gv-icon-4"></i></a> 
+                      <div class="content-inner"> 
+                          <div>
+    <div class="search-block-form block block-search container-inline" data-drupal-selector="search-block-form" id="block-gavias-sancy-search" role="search">
+  
+      <h2>Search</h2>
+    
+    <div class="content container-inline">
+        <form action="/search/node" method="get" id="search-block-form" accept-charset="UTF-8" class="search-form search-block-form">
+  <div class="js-form-item form-item js-form-type-search form-item-keys js-form-item-keys form-no-label">
+      <label for="edit-keys" class="visually-hidden">Search</label>
+        <input title="Enter the terms you wish to search for." data-drupal-selector="edit-keys" type="search" id="edit-keys" name="keys" value="" size="15" maxlength="128" class="form-search" />
+
+        </div>
+<div data-drupal-selector="edit-actions" class="form-actions js-form-wrapper form-wrapper" id="edit-actions"><input class="search-form__submit button js-form-submit form-submit" data-drupal-selector="edit-submit" type="submit" id="edit-submit" value="Search" />
+</div>
+
+</form>
+
+  
+  </div>
+</div>
+
+  </div>
+
+                      </div>
+                    </div>  
+                  </div>
+                               
+              </div>   
+            </div>
+          </div>
+        </div>  
+      </div>
+    </div>
+  </div>
+   
+</header>
+
+		
+		
+	
+    
+
+  <div class="help show">
+    <div class="container">
+      <div class="content-inner">
+          <div>
+    
+
+  </div>
+
+      </div>
+    </div>
+  </div>
+
+<div class="clearfix"></div>
+
+
+<div class="clearfix"></div>
+
+	<div role="main" class="main main-page">	
+		<div id="content" class="content content-full">
+			<div class="container">	
+				
+<div class="content-main-inner">
+	<div class="row">
+		
+					
+						 				 		
+							
+       
+
+		<div id="page-main-content" class="main-content col-xs-12 col-md-9 sright main_content ">
+						<div class="main-content-inner">
+				
+				
+									<div class="content-main">
+						  <div>
+    <div id="block-gavias-sancy-content" class="block block-system block-system-main-block no-title">
+  
+    
+      <div class="content block-content">
+      
+<article data-history-node-id="310" role="article" about="/projects/iot-based-inventory-management-system-using-load-cell-and-nodemcu" typeof="schema:Article" class="node node-detail node--type-article node--view-mode-full clearfix">
+  <div class="article-detail">
+    <div class="block">
+      
+      <div class="post-top">
+        <div class="post-meta category-background">  <span class="post-categories red" ><a href="/esp8266-projects" hreflang="en">ESP8266</a></span>
+<span class="post-created"> 16&nbsp;Feb,&nbsp;2021</span> / <span class="post-comment">4 Comments</span> </div>
+        <h1 class="post-title"><span property="schema:name">IoT Based Inventory Management System using Load Cell and NodeMCU</span>
+</h1>
+      </div>  
+
+      <div class="post-thumbnail">
+        
+            <div class="field field--name-field-image field--type-image field--label-hidden field__item">  <img property="schema:image" src="/sites/default/files/main-image/IoT-Based-Inventory-Management-System.jpg" alt="IoT Based Automated Inventory Management System " title="IoT Based Automatic Inventory Management System " typeof="foaf:Image" />
+
+</div>
+      
+      </div>
+
+      <div class="post-content">
+        <div class="node__content clearfix">
+        				  					
+											<p class="MsoNormal text-align-justify">Inventory control is the key component in effective store management. Keeping track of your stocks leads to proper pre-planning and decision-making. Nowadays, our local supermarkets and large factories store their goods on big shelves or in huge storage rooms, and to know the current quantity of store/business, owners have to manually count the packets. This process not only takes time but also introduces man-made errors. In the case of large storerooms, the situation becomes quite complex, and it becomes very&nbsp;<strong>difficult for humans to manually check</strong>&nbsp;the inventory on a regular basis.</p><div class="ad728x90-wrapper" style="margin-bottom:13px;">
+<!-- /21034905/Welcome_Ad3 -->
+<div id="div-gpt-ad-1632744355244-0" style="min-width: 640px; min-height: 480px;"">
+  <script>
+    googletag.cmd.push(function() { googletag.display("div-gpt-ad-1632744355244-0"); });
+  </script>
+</div>
+</div>
+<div class="ad300-wrapper" style="margin-bottom:13px;">
+<!-- /21034905/cd_small_leaderboard_banner_mobile -->
+<center><div id="div-gpt-ad-1619520139575-0" style="width: 300px; height: 90px;">
+  <script>
+    googletag.cmd.push(function() { googletag.display("div-gpt-ad-1619520139575-0"); });
+  </script>
+</div>
+</div></center>
+														
+
+<p class="MsoNormal text-align-justify">&nbsp;</p>
+														
+
+<p class="MsoNormal text-align-justify">This is why in this tutorial, we thought of building an <a href="https://iotdesignpro.com/tags/iot-led">Internet of Things</a> and <a href="https://iotdesignpro.com/tags/sensors">sensors</a> based <strong>Automated Inventory management system</strong> with the help of the popular NodeMCU <a href="https://iotdesignpro.com/esp8266-projects">ESP8266 microcontroller</a>, which can automatically detect the number of goods present on a shelf or, can accurately provide the weight of a particular good. And to make it convenient, we will incorporate IoT technology with the <strong>ThingSpeak cloud platform</strong> so that the store owner can monitor the inventory from his home/office. And finally, we will use another popular technology,&nbsp;<a href="https://iotdesignpro.com/tags/ifttt">IFTTT</a> to send an email if a product quantity goes below a certain level. So without further ado, let's get started.</p>
+														
+
+<p class="MsoNormal text-align-justify">&nbsp;</p>
+														
+
+<p class="MsoNormal text-align-justify">We have previously used ThingSpeak with ESP8266 to build <a href="https://iotdesignpro.com/projects/iot-based-air-quality-monitoring-system-with-twitter-notification">Air Quality Monitor system</a>, IoT <a href="https://iotdesignpro.com/projects/iot-wireless-weather-station-using-arduino-esp8266-thingspeak">weather station</a>, and <a href="https://iotdesignpro.com/projects/iot-based-smart-street-light-using-esp8266-and-thingspeak">Smart Street light</a>. You can check all the ThingSpeak and ESP2866 related projects by following the respective links.</p>
+														
+
+<p class="text-align-justify">&nbsp;</p>
+														
+
+</p>
+							
+									<h3><strong>Automatic Inventory Management System - Working</strong></h3>
+
+<p class="MsoNormal text-align-justify">To know the number of packets available in the inventory, we have to know the total weight and the weight of an individual packet. For example, if the weight of 1 package is 10 grams and the total weight of the shelf for inventory is 100 grams, then we can easily calculate the number of packets available on the shelf by dividing the total weight by the weight of one individual pack. In the mentioned example, we will get 10 packs. So, the next question is, how to calculate or how to measure the total weight. The answer to that question is simple, we will use a load cell. We can measure the total weight, and we can do all the necessary calculations with the help of a microcontroller. This way, we can calculate the number of packages available in the inventory.</p>
+
+<p class="MsoNormal text-align-justify">Now, let's upload this value to a cloud platform so that we can monitor the status of our <strong>inventory management system</strong> from anywhere in the world with the help of our <strong>inventory management software</strong>. In our project, we are going to use a NodeMCU and ThingSpeak to do all the work.</p>
+
+<p class="MsoNormal text-align-justify">&nbsp;</p>
+
+
+									<h3><strong>Components Required to Build the Automated Inventory Management System</strong></h3>
+
+<p class="MsoNormal text-align-justify">All the hardware components used to build this project are very generic, and you can find most of those in your local hobby store. A list of required components is given below.</p>
+
+<ul>
+	<li>NodeMCU - 1</li>
+	<li>Load Cell - 1</li>
+	<li>HX711 Load Cell Amplifier Module</li>
+	<li>128*64 OLED Display</li>
+	<li>Connecting Wires</li>
+	<li>MDF, Cardboard, Foam Sheet - for Encloser</li>
+	<li>7.4-volt li-ion Battery</li>
+</ul>
+
+<p class="text-align-justify">&nbsp;</p>
+
+
+									<h3><strong>Component Description of Automatic Inventory Management System</strong></h3>
+
+<p class="MsoNormal text-align-justify">Before proceeding further in the article, we should know some details about the components used. In this section, we have discussed all the components that will be used to build the circuit.</p>
+
+<p class="MsoNormal text-align-justify">&nbsp;</p>
+
+<p class="MsoNormal text-align-justify"><strong>The NodeMCU ESP8266 Development Board:</strong></p>
+
+<p class="MsoNormal text-align-justify"><strong>NodeMCU</strong> is an open-source development platform that runs on the <strong>ESP8266</strong> Wi-Fi SoC, which is developed by <strong>Espressif Systems. </strong>It has a built-in Wi-Fi module, which makes it suitable for IoT-related applications. That's why we are using NodeMCU. In our previous tutorials, we have used <a href="https://iotdesignpro.com/tags/nodemcu">NodeMCU</a> to build many other projects. You can check those out if you want to know about cooler NodeMCU based projects. An image of the NodeMCU board is shown below.</p>
+
+<p class="MsoNormal text-align-justify"><img alt="NodeMCU ESP8266 Development Board" data-entity-type="file" data-entity-uuid="e05f6835-6750-473f-84ec-018a63aa0a86" src="/sites/default/files/inline-images/ESP8266-NodeMCU_1.jpg" /></p>
+
+<p class="MsoNormal text-align-justify">&nbsp;</p>
+
+<p class="MsoNormal text-align-justify"><strong>Load Cell and the HX711 Load Cell Amplifier Module:&nbsp;</strong></p>
+
+<p class="MsoNormal text-align-justify">The key component of this project is the <strong>load cell</strong>. This is our load cell as you can see, one side is marked with ten kilograms. You probably already noticed some sort of white protective glue over the load cell and four different wires of different colors are coming out, we will later see what is below in this white protective glue. First of all, these load cells are made of aluminum blocks and as you can see, the middle part of the material is thinner so that will be the point that will suffer deformation. A load cell has two sides, let's say right and left. Imagine that the cell is holding on the right side and the force is applied on the left side so that could bend the load cell. So, a small deformation will be created both on the top side and on the bottom side of the load cell. The top part will suffer tension and the bottom part will suffer compression. The aluminum bar is bending downwards on the left side. If we can measure this deformation, we could later measure the force that was applied to the aluminum block, and that's exactly what we will do.</p>
+
+<p class="MsoNormal text-align-justify"><img alt="Load Cell" data-entity-type="file" data-entity-uuid="06bd48c9-486e-447a-8f73-027ce82a1b44" src="/sites/default/files/inline-images/Load-Cell.jpg" /></p>
+
+<p class="MsoNormal text-align-justify">A strain gauge is a component that is used to measure strain. If we take a closer look at this component, we can see two connection pads, and then we have the conductive wire pattern with repetitive deflections. This conductive wire has a defined resistance. When we bend it, will the resistance value change? One side of the strain gauge is mounted and fixed in a place. If we place a weight on the other side of the aluminum bar, this will force the strain gauge to bend, which will cause a change in resistance. How does this happen? The conductive pattern of the strain gauge is made of copper, this wire will have a certain area and length, so these two units will give the resistance of the wire. The resistance of a wire opposes the flow of current.</p>
+
+<p class="MsoNormal text-align-justify">Now, it's obvious that if the area of this wire gets smaller, fewer electrons could pass meaning a lower current. Now,&nbsp;if we increase the area, it will increase the resistance of a conductor. If some force is applied to this wire, this will stretch the area and it will get smaller and at the same time, resistance increases. But this resistance variation is very low. If we stretch the strain gauge, the resistance will increase and if we compress it, the resistance will get lower. To measure the force, we need to measure the resistance. Measuring the resistance directly is not always practical, because the change is very small. So, instead of measuring resistance, we can measure voltages easily. In this case, we need to convert the gauge output from resistance values to voltage values.</p>
+
+<p class="MsoNormal text-align-justify"><img alt="Wheatstone Bridge Circuit" data-entity-type="file" data-entity-uuid="7f16c0ee-62bc-421e-84b9-331a4fc2c25f" src="/sites/default/files/inline-images/Wheatstone-Bridge.png" /></p>
+
+<p class="MsoNormal text-align-justify">We can do this with the help of&nbsp;the&nbsp;<strong>Wheatstone bridge</strong>. We place the strain gauge in the Wheatstone bridge. If the bridge is balanced, the voltage in the middle point should be zero (previously we have built a project where we have described&nbsp;<a href="https://circuitdigest.com/article/what-is-wheatstone-bridge">how a Wheatstone bridge works</a>, you can check that out if you want to know more about the topic). When the strain gauge changes its resistance, it will unbalance the bridge, and the voltage will also change. So, this is how the Wheatstone bridge converts resistance variations to voltage values.</p>
+
+<p class="MsoNormal text-align-justify"><img alt="Hx711 Amplifier Board" data-entity-type="file" data-entity-uuid="97cdadc3-9437-4f6e-9109-1666f712f5b7" src="/sites/default/files/inline-images/Hx711-Amplifier-Board.jpg" /></p>
+
+<p class="MsoNormal text-align-justify"><strong>&nbsp;</strong></p>
+
+<p class="MsoNormal text-align-justify"><strong>The 128X64 OLED Display:</strong></p>
+
+<p class="MsoNormal text-align-justify"><strong><img alt="128X64 OLED Display" data-entity-type="file" data-entity-uuid="9e2f68ba-90c9-4d25-b4be-79d39afc1ade" src="/sites/default/files/inline-images/128X64-OLED-Display.jpg" /></strong></p>
+
+<p class="MsoNormal text-align-justify">This <strong>organic light-emitting diode (OLED) </strong>display is a mono-color, 0.96-inch display with 128×64 pixels. As the name suggests, an OLED display does not require a backlight because they are LEDs in the display, which is why the display has a nice contrast in dark environments. Additionally, the pixels of this display is made out of LEDs so they consume a little energy only when they are on, the OLED display consumes less power when compared with other displays. It has only four pins and communicates with the microcontroller using an I2C communication protocol. OLED displays are perfect for battery-operated projects that's why we have used OLED here.</p>
+
+<p class="text-align-justify">&nbsp;</p>
+
+
+									<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- IoTDesignPro_Boombox -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4104019148699772"
+     data-ad-slot="3572678616"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script><h3><strong>Automatic Inventory Management System&nbsp;Circuit Diagram&nbsp;</strong></h3>
+
+<p class="MsoNormal text-align-justify">The complete circuit diagram for the <strong>IoT Based Automated Inventory Management System</strong> is shown below.</p>
+
+<p class="MsoNormal text-align-justify"><img alt="Automatic Inventory Management System Circuit Diagram" data-entity-type="file" data-entity-uuid="78946f8d-1739-4827-8af7-56078a10ab47" src="/sites/default/files/inline-images/Automatic-Inventory-Management-Schematic.png" /></p>
+
+<p class="MsoNormal text-align-justify">The circuit diagram of inventory is very simple. Here, we connected the OLED display to the I2C pins of NodeMCU, which are the D1 and D2 pins on the board. Next, we connect the loadcell to NodeMCU. Loadcell has four wires - Red, Black, Green, and White. The color may vary according to the manufacturers, so it's better to refer to the <strong>datasheet</strong>. Connect red to E+ of HX711 board, connect black to E-, connect white to A+, and connect green to A-, Dout, and clock of the board connect to D5 and D6,&nbsp;respectively. Then connect&nbsp;the grounds of the OLED display and amplifier to the ground of NodeMCU. OLED and the load cell amplifier work on 5v, but the NodeMCU doesn't have 5v pins so we have to use a 5v regulator with the circuit. The image given below shows the breadboard prototype.</p>
+
+<p class="MsoNormal text-align-justify"><img alt="Inventory Management System Setup" data-entity-type="file" data-entity-uuid="0966389e-3fb2-4116-9667-c1f9a913b5b7" src="/sites/default/files/inline-images/Inventory-Management-System-Breadboard-Prototype.jpg" /></p>
+
+<p class="MsoNormal text-align-justify">&nbsp;</p>
+
+		
+									<h3><strong>Automatic Inventory Management System - Encloser to House the Circuitry</strong></h3>
+
+<p class="MsoNormal text-align-justify">To hold the circuitry and the inventory, we need to make an encloser. For that, we are using a PVC sheet. You can use any type of materials like MDF, Foam Sheet, etc. Here, I am using a PVC sheet for better strength. First, I cut 20 x 20cm square and three 20 x 5 rectangles from the PVC board. Then, using hot glue and the cut-down pieces of the PVC, I made a small box. Then I used an old cardboard box as a top (storage space) of the scale. You must leave some space from the ground to the cell so it will be able to bend. Place screw nuts in between the load cell and the base. I added plastic spacers in between the loadcell and top part. This is how I made the inventory body. You can design with your ideas, but remember to place the load cell&nbsp;as shown in the image. You can use the images given below as a reference.</p>
+
+<p class="MsoNormal text-align-justify"><img alt="Inventory Management System Enclosure" data-entity-type="file" data-entity-uuid="72ab6133-009b-487b-bd86-f11ebf61c64e" src="/sites/default/files/inline-images/Inventory-Management-System-Enclosure.jpg" /></p>
+
+<p class="text-align-justify">&nbsp;</p>
+
+
+									<h3><strong>Setting-Up&nbsp;ThingSpeak Account for Automatic Inventory Management System</strong></h3>
+
+<p class="MsoNormal text-align-justify"><a href="https://iotdesignpro.com/tags/thingspeak">ThingSpeak</a>&nbsp;is an open data&nbsp;<strong>IoT Analytics platform</strong>&nbsp;that allows you to aggregate, visualize, and analyze live data in the cloud. You can&nbsp;<strong>control your devices using ThingSpeak</strong>, you can send data to ThingSpeak from your devices,&nbsp;and you can even create instant visualizations of live data, and send alerts using web services like&nbsp;<strong>Twitter</strong>&nbsp;and&nbsp;<strong>ThingHTTP</strong>.</p>
+
+<p class="MsoNormal text-align-justify">&nbsp;</p>
+
+<p class="MsoNormal text-align-justify">First, go to <em><strong>Thingspeak.com</strong></em> and signup with your mail, then click on channels. From there, click on the new channel to create the interface.</p>
+
+<p class="MsoNormal text-align-justify"><img alt="ThingSpeak " data-entity-type="file" data-entity-uuid="415466e9-a658-40dc-98eb-45414ffbea67" src="/sites/default/files/inline-images/ThingSpeak_0.jpg" /></p>
+
+<p class="MsoNormal text-align-justify"><img alt="ThingSpeak New Channel" data-entity-type="file" data-entity-uuid="39381e0f-a052-4351-82bb-210c2141100c" src="/sites/default/files/inline-images/ThingSpeak-New-Channel.png" /></p>
+
+<p class="MsoNormal text-align-justify">Now, you will see a tab like this for creating the channel, give name and Description (if you want). We need two fields to collect the data from esp (total weight and nom of pieces left). For that, give the name&nbsp;‘total weight’ and ‘number of pieces left’ in Field 1 and Field 2. Tick the checkboxes for both Fields. Also, tick the check box for the ‘Make Public’ option below in the form and finally Save the Channel. Now, your new channel has been created.</p>
+
+<p class="MsoNormal text-align-justify">&nbsp;</p>
+
+<p class="MsoNormal text-align-justify">After that, click on API keys and&nbsp;copy the write API key. We need to enter this key in the main program to upload data to the ThingSpeak cloud.</p>
+
+<p class="MsoNormal text-align-justify"><img alt="ThingSpeak API Key" data-entity-type="file" data-entity-uuid="13db74d9-f32d-4ac6-b8cb-6c15dc52056b" src="/sites/default/files/inline-images/ThingSpeak-API-Key_2.png" /></p>
+
+<p class="MsoNormal text-align-justify">Now, we need to display the data on the website. For that, click on the widget and select a widget. Here, we need to display the total weight and piece number (numeric) so select numeric display and click next. Now, we need to name the widget. Here, I am writing "total weight of the container". Now,&nbsp;select field 1(because we need to display the value of field one). Then select the unit and click create. Do the same for the second field.</p>
+
+<p class="MsoNormal text-align-justify"><img alt="ThingSpeak Widget" data-entity-type="file" data-entity-uuid="143d193a-3a58-4058-9e0d-990c3746e8f1" src="/sites/default/files/inline-images/ThingSpeak-Widget.png" /></p>
+
+<p class="MsoNormal text-align-justify"><img alt="Widget Parameter configuration" data-entity-type="file" data-entity-uuid="3ff31eb4-bc33-4213-b181-2091f5833fcc" src="/sites/default/files/inline-images/Configure-Widget-Parameter.png" /></p>
+
+<p class="MsoNormal text-align-justify">Next, click on add visualization and add a chart for displaying the quantity graphically (if you want). Now, our interface is ready to receive data and looks something like this.</p>
+
+<p class="MsoNormal text-align-justify"><img alt="ThingSpeak Visualization" data-entity-type="file" data-entity-uuid="51ac92a3-2157-42d4-9c42-55bb2da327e4" src="/sites/default/files/inline-images/ThingSpeak-Visualization.png" /></p>
+
+<p class="MsoNormal text-align-justify"><img alt="IoT Analytics Platform " data-entity-type="file" data-entity-uuid="204954d3-1669-480a-a536-9a7e13e648eb" src="/sites/default/files/inline-images/IoT-Analytics-Platform.png" /></p>
+
+<p class="MsoNormal text-align-justify">&nbsp;</p>
+
+
+									<h3><strong>IFTTT Setup for Automatic Email Notification</strong></h3>
+
+<p class="MsoNormal text-align-justify">In the introduction section, we told you that we will send an email whenever a certain threshold is reached. For that, we need to set up an IFTTT account. For that, first, go to ifttt.com and sign up / sign in with your credentials. Click on the add button located near this search webhooks and select webhooks, give an event name, and create the trigger. Now, you can see the webhooks logo after it.</p>
+
+<p class="MsoNormal text-align-justify"><img alt="IFTTT Setup " data-entity-type="file" data-entity-uuid="b7f9d0db-522b-4d45-b8e0-4641cd65d553" src="/sites/default/files/inline-images/IFTTT-Setup_1.png" /></p>
+
+<p class="MsoNormal text-align-justify"><img alt="IFTTT Webhooks" data-entity-type="file" data-entity-uuid="e8d304d5-898c-49bc-890c-a0de53c6e45d" src="/sites/default/files/inline-images/IFTTT-Webhooks_1.png" /></p>
+
+<p class="MsoNormal text-align-justify"><img alt="IFTTT Trigger Field" data-entity-type="file" data-entity-uuid="143d4c6f-ff0d-41f9-848d-2e7e89f3da47" src="/sites/default/files/inline-images/IFTTT-Trigger-Field_0.png" /></p>
+
+<p class="MsoNormal text-align-justify">Now, click on the next to add button and search for “email” and select the email to customize your message according to your wish. Also, customize the body of the mail. Here, I wrote "stock running out" and click finish. Here, the “This” function will be for webhooks service and the “that” function will be email Services.</p>
+
+<p class="MsoNormal text-align-justify"><img alt="IFTTT Add Button" data-entity-type="file" data-entity-uuid="81a722ad-5f01-43e9-90e7-c7f768d63ead" src="/sites/default/files/inline-images/IFTTT-Add-Button.jpg" /></p>
+
+<p class="MsoNormal text-align-justify"><img alt="IFTTT Email Service" data-entity-type="file" data-entity-uuid="27fb7afa-fa22-40ae-815c-a534ab45fe92" src="/sites/default/files/inline-images/IFTTT-Email-Service.jpg" /></p>
+
+<p class="MsoNormal text-align-justify"><img alt="IFTTT Email" data-entity-type="file" data-entity-uuid="04132ebc-597d-4628-9038-a5350aed3a35" src="/sites/default/files/inline-images/IFTTT-Email.jpg" /></p>
+
+<p class="MsoNormal text-align-justify">Now, click on the webhooks logo and then click on the documentation. Then we need to change the event name. Replace the event exactly with our event name. After that, copy the URL that is shown.</p>
+
+<p class="MsoNormal text-align-justify"><img alt="Webhooks" data-entity-type="file" data-entity-uuid="34e9118d-0f70-41bf-b236-23fd0eba4429" src="/sites/default/files/inline-images/Webhook.jpg" /></p>
+
+<p class="MsoNormal text-align-justify"><img alt="IFTTT Webhooks" data-entity-type="file" data-entity-uuid="174d0f02-9f34-4c1a-8104-52da7fbb460d" src="/sites/default/files/inline-images/IFTTT-Webhooks_0.jpg" /></p>
+
+<p class="MsoNormal text-align-justify"><img alt="IFTTT Key" data-entity-type="file" data-entity-uuid="cf7db39b-7a5d-49bd-be85-78a980ec6738" src="/sites/default/files/inline-images/IFTTT-Key_0.jpg" /></p>
+
+<p class="MsoNormal text-align-justify">Go to thingspeak.com, then click on Apps and click on Thing HTTP. When you are there, give a name, paste the previously copied URL. Select the method as POST. In the Body, give the channel id (you will get channel id by clicking on the created channel) and change the field where we need to send mail according to the number of pieces left so I choose field 2. The image below will give you a better idea of the process.</p>
+
+<p class="MsoNormal text-align-justify"><img alt="ThingSpeak ThingHTTP" data-entity-type="file" data-entity-uuid="5950a9f2-ee09-4880-bf91-89452d911640" src="/sites/default/files/inline-images/ThingSpeak-ThingHTTP.jpg" /></p>
+
+<p class="MsoNormal text-align-justify"><img alt="ThingSpeak URL" data-entity-type="file" data-entity-uuid="930822b8-3edc-476b-ab61-d854eca17bbd" src="/sites/default/files/inline-images/ThingSpeak-URL.jpg" /></p>
+
+<p class="MsoNormal text-align-justify"><img alt="ThingHTTP ThingSpeak" data-entity-type="file" data-entity-uuid="748e1c4d-d661-40b7-be98-2217d82c6d39" src="/sites/default/files/inline-images/ThingHTTP-ThingSpeak.jpg" /></p>
+
+<p class="MsoNormal text-align-justify">Now, go-to the apps then click react. Here give a name, select condition type as numeric, select the channel. Now, give the condition (I gave like this if the value is less than 5). You can change according to your ideas. Then select the ThingHTTP and finally click save react. All these things jointly send an email notification when the stock goes below 5 units.</p>
+
+<p class="MsoNormal text-align-justify"><img alt="ThingSpeak React" data-entity-type="file" data-entity-uuid="f78f21e7-cc4d-4adc-be28-224063b2f5df" src="/sites/default/files/inline-images/ThingSpeak-React.jpg" /></p>
+
+<p class="MsoNormal text-align-justify"><img alt="ThingSpeak Inventory Management" data-entity-type="file" data-entity-uuid="4c5e5357-de2f-4f93-9032-26718eb7bc08" src="/sites/default/files/inline-images/ThingSpeak-Condition-Type.jpg" /></p>
+
+<p class="MsoNormal text-align-justify">That marks the end of our server setup process, and we can move onto the coding for the NodeMCU.</p>
+
+<p class="text-align-justify">&nbsp;</p>
+
+
+									<h3><strong>Automatic Inventory Monitoring and Management System - Arduino Code</strong></h3>
+
+<p class="MsoNormal text-align-justify">I am going to upload code to a NodeMCU board, with Arduino IDE. So, we need to add the ESP Board package in the Arduino IDE. To do this, open your Arduino IDE, then open preference from the file menu.&nbsp;Paste the link given below and press OK.</p>
+
+<p class="MsoNormal text-align-justify"><a href="http://arduino.esp8266.com/stable/package_esp8266com_index.json" rel="nofollow" target="_blank"><em>http://arduino.esp8266.com/stable/package_esp8266com_index.json</em></a><em> </em></p>
+
+<p class="MsoNormal text-align-justify"><em>&nbsp;<img alt="ESP Board Package" data-entity-type="file" data-entity-uuid="4f88bff3-3193-4d47-9127-daa22be6db90" src="/sites/default/files/inline-images/ESP-Board-Package.jpg" /></em></p>
+
+<p class="MsoNormal text-align-justify">Then go to <strong>tools-&gt;boards-&gt;board manager. </strong>Now search for ESP and install.</p>
+
+<p class="MsoNormal text-align-justify"><img alt="Arduino IDE ESP Library" data-entity-type="file" data-entity-uuid="cebacb61-0be9-4f3b-ad24-b520e2e68802" src="/sites/default/files/inline-images/Arduino-IDE-ESP-Library.png" /></p>
+
+<p class="MsoNormal text-align-justify">After installing this, we can start writing the program.<em> </em></p>
+
+<p class="MsoNormal text-align-justify">The complete code for the NodeMCU based Inventory Management System is given below. We start our code by including all the required libraries. The Wire library needs to be included in order to work with some of the I2C devices. Here, we are using an I2C based OLED module, so we need to include the wire library. We also need to include <strong>adafruit</strong> <strong>gfx</strong> and<strong> ssd1306 </strong>in order to work with the OLED. <strong>ESP8266WiFi</strong> is for connecting Wi-Fi to the ESP board, <strong>HX711</strong> for taking readings from loadcell, and <strong>EEPROM</strong> for storing the values in esp’s EEPROM.</p>
+
+<pre>
+<em>#include &lt;Wire.h&gt;</em>
+<em>#include &lt;Adafruit_GFX.h&gt;</em>
+<em>#include &lt;Adafruit_SSD1306.h&gt;</em>
+<em>#include &lt;ESP8266WiFi.h&gt;</em>
+<em>#include &lt;HX711_ADC.h&gt;</em>
+<em>#include &lt;EEPROM.h&gt;</em></pre>
+
+<p class="MsoNormal text-align-justify">&nbsp;</p>
+
+<p class="MsoNormal text-align-justify">Next, in&nbsp;four lines, we <strong>defined the properties of OLED display,</strong> change these according to your display (all lines commented in the code)</p>
+
+<pre>
+<em>#define SCREEN_WIDTH 128 </em>
+<em>#define SCREEN_HEIGHT 64 </em>
+<em>#define OLED_RESET     </em>
+<em>Adafruit_SSD1306 display (SCREEN_WIDTH, SCREEN_HEIGHT, &amp;Wire, OLED_RESET);</em></pre>
+
+<p class="MsoNormal text-align-justify">&nbsp;</p>
+
+<p class="MsoNormal text-align-justify">Then we have defined pins for the modules and assigned values zero to the EEPROM address. <em>HX711_ADC</em> loadcell function is for setting the Dout and clock pin. Also, we have defined integers to hold the EEPROM address.</p>
+
+<pre>
+<em>const int HX711_dout = D5; </em>
+<em>const int HX711_sck = D6; </em>
+<em>HX711_ADC LoadCell(HX711_dout, HX711_sck);</em>
+<em>const int calVal_eepromAdress = 0;</em>
+<em>long t;</em></pre>
+
+<p class="MsoNormal text-align-justify">&nbsp;</p>
+
+<p class="MsoNormal text-align-justify">To calibrate and store that calibration value in <strong>EEPROM</strong>, first, go to <em><strong>file &gt; examples&gt; HX 711_ADC</strong></em>, then select the calibration code. Before uploading the code, place the balance on a stable plane surface. Then upload the code to Arduino and open the serial monitor. Then change the baud rate to 572600. Now, the monitor asks&nbsp;to offset the weight, for that, we need to press t.</p>
+
+<p class="MsoNormal text-align-justify"><img alt="Inventory Management Code" data-entity-type="file" data-entity-uuid="5ecd7ee4-8641-49cc-9765-ff0fd88057ef" src="/sites/default/files/inline-images/Invetory-Management-Code.jpg" /></p>
+
+<p class="MsoNormal text-align-justify">Now, we need to place the known weight on the balance. In my case that is 194gm. After placing the known weight, type the numerical value for the weight on the serial monitor and hit enter.</p>
+
+<p class="MsoNormal text-align-justify"><img alt="Arduino IDE" data-entity-type="file" data-entity-uuid="85311c9c-fd01-43c2-8e07-8bd8a998db73" src="/sites/default/files/inline-images/Arduino-IDE-Code.jpg" /></p>
+
+<p class="MsoNormal text-align-justify">Now monitor asks you whether you want to save the value in EEPROM or not,&nbsp;type y. Now, we can see the weight on the serial monitor.</p>
+
+<p class="MsoNormal text-align-justify"><img alt="Inventory Monitoring Code" data-entity-type="file" data-entity-uuid="5659e347-35e2-4ee0-97fd-761105bb31c1" src="/sites/default/files/inline-images/Inventory-Monitoring-Code.jpg" /></p>
+
+<p class="MsoNormal text-align-justify">In this way, the NodeMCU automatically picks the calibration value from EEPROM. Next, we need to set a string and characters for the API key SSID and the password.&nbsp;Use your own credentials in the <strong>SSID </strong>and pass section.</p>
+
+<pre>
+<em>String apiKey = "ABCDEFGHI";     </em>
+<em>const char *ssid =  "BALANCE";     </em>
+<em>const char *pass =  "PASSWORD";</em>
+<em>const char* server = "api.thingspeak.com";</em>
+<em>WiFiClient client;</em></pre>
+
+<p class="MsoNormal text-align-justify">&nbsp;</p>
+
+<p class="MsoNormal text-align-justify">Next, in the setup section, I entered the I2C address of my display. Then I started the serial communications with a baud rate of 112500 for better debugging. Also, I started the Wi-Fi communication, load cell, and also EEPROM.</p>
+
+<pre>
+<em>if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C))</em>
+<em>Serial.begin(115200);</em>
+<em>LoadCell.begin();</em>
+<em>EEPROM.begin(512);</em></pre>
+
+<p class="text-align-justify">&nbsp;</p>
+
+<p class="MsoNormal text-align-justify">Next, in the loop section, first, we check if any data from the load cell is available using <strong><em>LoadCell.update. </em></strong>If available, we read and store that data.</p>
+
+<pre>
+<em>if (millis() &gt; t + serialPrintInterval) {</em>
+<em>      float i = LoadCell.getData();</em></pre>
+
+<p class="MsoNormal text-align-justify">&nbsp;</p>
+
+<p class="MsoNormal text-align-justify">Then,&nbsp;I configured the display so that the display shows the values. In this way, I can display the loadcell values. In the same way, we can display the value of the number of pieces left in our homemade inventory.</p>
+
+<pre>
+<em>      display.clearDisplay();</em>
+<em>      display.setTextColor(WHITE);</em>
+<em>      display.setTextSize(1);</em>
+<em>      display.setCursor(5, 0);</em>
+<em>      display.print("TOTAL WEIGHT ");</em>
+<em>      display.setCursor(10, 15);</em>
+<em>      display.setTextSize(1);</em>
+<em>      display.print(i);</em>
+<em>      display.print("gm");</em>
+<em>      display.display();</em></pre>
+
+<p class="MsoNormal text-align-justify">&nbsp;</p>
+
+<p class="MsoNormal text-align-justify">I defined a float variable and an integer. Float (w) is for storing the weight of one piece (we need to enter this value manually) and integer (k) is for storing the result of the calculation. The calculation is very simple. We get the number of pieces (k) by dividing the total weight (i) by the weight of one piece(w)</p>
+
+<pre>
+<em>float  i = LoadCell.getData();</em>
+<em> float  w</em>
+<em>int k = i / w;</em></pre>
+
+<p class="MsoNormal text-align-justify">&nbsp;</p>
+
+<p class="MsoNormal text-align-justify">The following lines of code are for sending the data to ThingSpeak cloud.</p>
+
+<pre>
+<em>if (client.connect(server, 80))  </em>
+<em>      {</em>
+<em>        String postStr = apiKey;</em>
+<em>        postStr += "&amp;field1=";</em>
+<em>        postStr += String(i);</em>
+<em>        postStr += "&amp;field2=";</em>
+<em>        postStr += String(k);</em>
+<em>        postStr += "\r\n\r\n";</em>
+<em>        client.print("POST /update HTTP/1.1\n");</em>
+<em>        client.print("Host: api.thingspeak.com\n");</em>
+<em>        client.print("Connection: close\n");</em>
+<em>        client.print("X-THINGSPEAKAPIKEY: " + apiKey + "\n");</em>
+<em>        client.print("Content-Type: application/x-www-form-urlencoded\n");</em>
+<em>        client.print("Content-Length: ");</em>
+<em>        client.print(postStr.length());</em>
+<em>        client.print("\n\n");</em>
+<em>        client.print(postStr);</em>
+<em>        Serial.println(" Sending to Thingspeak.");</em>
+      }</pre>
+
+<p class="MsoNormal text-align-justify">&nbsp;</p>
+
+<p class="MsoNormal text-align-justify">That’s all about the coding section. Now, just select the board NodeMCU12E compile and upload.</p>
+
+<p class="MsoNormal text-align-justify">&nbsp;</p>
+
+<p class="MsoNormal text-align-justify">Please find the complete working of this project in the video linked at the bottom of this page. If you have questions regarding the article, you can leave them in the comment section below.</p>
+
+				
+  <div class="field field--name-field-code field--type-text-long field--label-above">
+    <div class="field__label">Code</div>
+              <div class="field__item"><p>#include &lt;Wire.h&gt;<br />
+#include &lt;Adafruit_GFX.h&gt;<br />
+#include &lt;Adafruit_SSD1306.h&gt;<br />
+#include &lt;ESP8266WiFi.h&gt;<br />
+#include &lt;HX711_ADC.h&gt;<br />
+#include &lt;EEPROM.h&gt;<br />
+#define SCREEN_WIDTH 128 // OLED display width, in pixels<br />
+#define SCREEN_HEIGHT 64 // OLED display height, in pixels<br />
+#define OLED_RESET     0 // Reset pin # (or -1 if sharing Arduino reset pin)<br />
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &amp;Wire, OLED_RESET);<br />
+const int HX711_dout = D5; //mcu &gt; HX711 dout pin<br />
+const int HX711_sck = D6; //mcu &gt; HX711 sck pin<br />
+HX711_ADC LoadCell(HX711_dout, HX711_sck);<br />
+const int calVal_eepromAdress = 0;<br />
+long t;<br />
+String apiKey = "X156L1RL9XAUOMCM";     //  Enter your Write API key from ThingSpeak<br />
+const char *ssid =  "edisonsciencecorner";     // replace with your wifi ssid and wpa2 key<br />
+const char *pass =  "eeeeeeee";<br />
+const char* server = "api.thingspeak.com";<br />
+WiFiClient client;<br />
+void setup() {<br />
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3D for 128x64<br />
+    Serial.println(F("SSD1306 allocation failed"));<br />
+    for (;;); // Don't proceed, loop forever<br />
+  }<br />
+  Serial.begin(115200);<br />
+  delay(10);<br />
+  Serial.println("Connecting to ");<br />
+  Serial.println(ssid);<br />
+  WiFi.begin(ssid, pass);<br />
+  while (WiFi.status() != WL_CONNECTED)<br />
+  {<br />
+    delay(500);<br />
+    Serial.print(".");<br />
+  }<br />
+  Serial.println("");<br />
+  Serial.println("WiFi connected");<br />
+  LoadCell.begin();<br />
+  float calibrationValue;// calibration value (see example file "Calibration.ino")<br />
+#if defined(ESP8266)|| defined(ESP32)<br />
+  EEPROM.begin(512);      // uncomment this if you use ESP8266/ESP32 and want to fetch the calibration value from eeprom<br />
+#endif<br />
+  EEPROM.get(calVal_eepromAdress, calibrationValue); // uncomment this if you want to fetch the calibration value from eeprom<br />
+  long stabilizingtime = 2000; // preciscion right after power-up can be improved by adding a few seconds of stabilizing time<br />
+  boolean _tare = true; //set this to false if you don't want tare to be performed in the next step<br />
+  LoadCell.start(stabilizingtime, _tare);<br />
+  if (LoadCell.getTareTimeoutFlag()) {<br />
+    Serial.println("Timeout, check MCU&gt;HX711 wiring and pin designations");<br />
+    while (1);<br />
+  }<br />
+  else {<br />
+    LoadCell.setCalFactor(calibrationValue); // set calibration value (float)<br />
+    Serial.println("Startup is complete");<br />
+  }<br />
+}<br />
+void loop() {<br />
+  static boolean newDataReady = 0;<br />
+  const int serialPrintInterval = 0; //increase value to slow down serial print activity<br />
+  // check for new data/start next conversion:<br />
+  if (LoadCell.update()) newDataReady = true;<br />
+  // get smoothed value from the dataset:<br />
+  if (newDataReady) {<br />
+    if (millis() &gt; t + serialPrintInterval) {<br />
+      float i = LoadCell.getData();<br />
+      Serial.print("Load_cell output val: ");<br />
+      Serial.println(i);<br />
+      float w = 5; //weight of one piece<br />
+      display.clearDisplay();<br />
+      display.setTextColor(WHITE);<br />
+      display.setTextSize(1);<br />
+      display.setCursor(5, 0);<br />
+      display.print("TOTAL WEIGHT ");<br />
+      display.setCursor(10, 15);<br />
+      display.setTextSize(1);<br />
+      display.print(i);<br />
+      display.print("gm");<br />
+      display.display();<br />
+      int k = i / w;<br />
+      display.setTextSize(1);<br />
+      display.setCursor(0, 30);<br />
+      display.print("PIECES LEFT ");<br />
+      display.setCursor(30, 45);<br />
+      display.setTextSize(2);<br />
+      display.print(k);<br />
+      display.print(" Nos");<br />
+      display.display();<br />
+      if (client.connect(server, 80))  //   "184.106.153.149" or api.thingspeak.com<br />
+      {<br />
+        String postStr = apiKey;<br />
+        postStr += "&amp;field1=";<br />
+        postStr += String(i);<br />
+        postStr += "&amp;field2=";<br />
+        postStr += String(k);<br />
+        postStr += "\r\n\r\n";<br />
+        client.print("POST /update HTTP/1.1\n");<br />
+        client.print("Host: api.thingspeak.com\n");<br />
+        client.print("Connection: close\n");<br />
+        client.print("X-THINGSPEAKAPIKEY: " + apiKey + "\n");<br />
+        client.print("Content-Type: application/x-www-form-urlencoded\n");<br />
+        client.print("Content-Length: ");<br />
+        client.print(postStr.length());<br />
+        client.print("\n\n");<br />
+        client.print(postStr);<br />
+        Serial.println(" Sending to Thingspeak.");<br />
+      }<br />
+      client.stop();<br />
+      Serial.println("Waiting...");<br />
+      // thingspeak needs minimum 15 sec delay between updates<br />
+      delay(10);<br />
+      newDataReady = 0;<br />
+      t = millis();<br />
+    }<br />
+  }<br />
+}</p></div>
+          </div>
+
+	
+  <div class="field field--name-field-video field--type-text-long field--label-above">
+    <div class="field__label">Video</div>
+              <div class="field__item"><p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" height="315" src="https://www.youtube.com/embed/ThY09sQm0RY" width="560"></iframe></p></div>
+          </div>
+	
+	        </div>
+
+          
+
+	  <!-- custom added to show datasheet --> 
+	  <style>.file--application-pdf a{color: #CD2122;}</style>
+
+
+
+                                                                                                                                                                                    
+                    
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+    
+
+<script src="https://di.oemsecrets.com/loader/project.js"
+data-di-key="900r5r5hkvwvqc6nts9pci4hw4lsi8g1qsuo0bdylnh4kk62fknkervulldkiiwb"
+data-di-project="article"
+data-di-terms=esp8266devkit|nodemcu
+data-di-inv-limit="5"
+></script>
+
+
+
+
+
+        <div class="post-tags clearfix">
+          
+  <div class="field field--name-field-tags field--type-entity-reference field--label-above">
+    <div class="field__label">Tags</div>
+          <div class="field__items">
+              <div class="field__item"><a href="/tags/iot" property="schema:about" hreflang="en">IoT</a></div>
+          <div class="field__item"><a href="/tags/inventory-management" property="schema:about" hreflang="en">inventory management</a></div>
+          <div class="field__item"><a href="/tags/nodemcu" property="schema:about" hreflang="en">NodeMCU</a></div>
+              </div>
+      </div>
+        </div>  
+      </div>
+
+    </div>  
+
+    <div class="related-posts margin-top-30">
+      <div class="views-element-container block block-views block-views-blockrelated-block-block-related-articles" id="block-gavias-sancy-views-block-related-block-block-related-articles">
+  
+      <h2 class="block-title" ><span>Related Articles</span></h2>
+    
+      <div class="content block-content">
+      <div><div class="js-view-dom-id-7023bacb6d15e13b26ea4222c46fd16678310dd6685cab187077748c9331124b">
+  
+  
+  
+
+  
+  
+  
+
+  <div class="gva-view-grid">
+   
+      
+   
+
+      
+      <div class="lg-block-grid-3 md-block-grid-3 sm-block-grid-2 xs-block-grid-2">
+      
+               <div class="item-columns">
+            <div>
+
+<div data-history-node-id="656" role="article" about="/news/win-source-to-showcase-in-electronica-2026" typeof="schema:Article" class="node node--type-article node--view-mode-teaser-1 clearfix post-block index-1">
+  <div class="post-thumbnail post-image post-standard">
+    
+            <div class="field field--name-field-image field--type-image field--label-hidden field__item">  <a href="/news/win-source-to-showcase-in-electronica-2026"><img property="schema:image" src="/sites/default/files/styles/normal_size/public/main-image/electronica-2026.jpg?itok=GcTjYcce" alt="WIN SOURCE to Showcase in electronica 2026" title="WIN SOURCE to Showcase in electronica 2026" typeof="foaf:Image" />
+
+</a>
+</div>
+      
+    <div class="icons-format">
+                </div>
+        <div class="post-meta top category-background"></div>
+  </div>
+  <div class="post-content">
+    <div class="post-meta"><span class="post-created"> 26&nbsp;Oct,&nbsp;2026</span></div>
+    <h3 class="post-title"><a href="/news/win-source-to-showcase-in-electronica-2026" rel="bookmark"><span property="schema:name">WIN SOURCE to Showcase Electronic Component Sourcing and Supply Chain Solutions at electronica 2026</span>
+</a></h3>
+    <div class="post-body"></div>
+  </div>
+</div>  
+</div>
+         </div>
+               <div class="item-columns">
+            <div>
+
+<div data-history-node-id="655" role="article" about="/news/synaptics-launches-veros-wi-fi-7-soc-family-designed-for-iot-applications" typeof="schema:Article" class="node node--type-article node--view-mode-teaser-1 clearfix post-block index-2">
+  <div class="post-thumbnail post-image post-standard">
+    
+            <div class="field field--name-field-image field--type-image field--label-hidden field__item">  <a href="/news/synaptics-launches-veros-wi-fi-7-soc-family-designed-for-iot-applications"><img property="schema:image" src="/sites/default/files/styles/normal_size/public/main-image/IDP%20-%20Synaptics%20Launches%20Veros%20Wi-Fi%207%20SoC%20Family%20Designed%20for%20IoT%20Applications.png?itok=B6Ps6czI" alt="Synaptics Launches Veros Wi-Fi 7 SoC Family" title="Synaptics Launches Veros Wi-Fi 7 SoC Family" typeof="foaf:Image" />
+
+</a>
+</div>
+      
+    <div class="icons-format">
+                </div>
+        <div class="post-meta top category-background"></div>
+  </div>
+  <div class="post-content">
+    <div class="post-meta"><span class="post-created"> 06&nbsp;May,&nbsp;2025</span></div>
+    <h3 class="post-title"><a href="/news/synaptics-launches-veros-wi-fi-7-soc-family-designed-for-iot-applications" rel="bookmark"><span property="schema:name">Synaptics Launches Veros Wi-Fi 7 SoC Family Designed for IoT Applications</span>
+</a></h3>
+    <div class="post-body"></div>
+  </div>
+</div>  
+</div>
+         </div>
+               <div class="item-columns">
+            <div>
+
+<div data-history-node-id="653" role="article" about="/news/csignum-raises-6m-euro-in-series-a-funding-to-expand-underwater-iot-communication-technology" typeof="schema:Article" class="node node--type-article node--view-mode-teaser-1 clearfix post-block index-3">
+  <div class="post-thumbnail post-image post-standard">
+    
+            <div class="field field--name-field-image field--type-image field--label-hidden field__item">  <a href="/news/csignum-raises-6m-euro-in-series-a-funding-to-expand-underwater-iot-communication-technology"><img property="schema:image" src="/sites/default/files/styles/normal_size/public/main-image/IDP%20-%20CSignum%20Raises%20%C2%A36M%20Series%20A%20to%20Expand%20Underwater%20IoT%20Communication%20Technology.png?itok=3MkGj8Ho" alt="CSignum Secures £6M in Series A Funding" title="CSignum Secures £6M in Series A Funding" typeof="foaf:Image" />
+
+</a>
+</div>
+      
+    <div class="icons-format">
+                </div>
+        <div class="post-meta top category-background"></div>
+  </div>
+  <div class="post-content">
+    <div class="post-meta"><span class="post-created"> 22&nbsp;Apr,&nbsp;2025</span></div>
+    <h3 class="post-title"><a href="/news/csignum-raises-6m-euro-in-series-a-funding-to-expand-underwater-iot-communication-technology" rel="bookmark"><span property="schema:name">CSignum Raises £6M in Series A Funding to Expand Underwater IoT Communication Technology</span>
+</a></h3>
+    <div class="post-body"></div>
+  </div>
+</div>  
+</div>
+         </div>
+               <div class="item-columns">
+            <div>
+
+<div data-history-node-id="649" role="article" about="/news/nozomi-networks-integrates-with-nokia-mxie-for-secure-industry-4-operations" typeof="schema:Article" class="node node--type-article node--view-mode-teaser-1 clearfix post-block index-4">
+  <div class="post-thumbnail post-image post-standard">
+    
+            <div class="field field--name-field-image field--type-image field--label-hidden field__item">  <a href="/news/nozomi-networks-integrates-with-nokia-mxie-for-secure-industry-4-operations"><img property="schema:image" src="/sites/default/files/styles/normal_size/public/main-image/IDP%20-%20Nozomi%20Networks%20Integrates%20with%20Nokia%20MXIE%20for%20Secure%20Industry%204.0%20Operations.png?itok=tp1GxPAT" alt="Nozomi Networks Guardian integrated with MX Industrial Edge (MXIE) Platform" title="Nozomi Networks Guardian integrated with MX Industrial Edge (MXIE) Platform" typeof="foaf:Image" />
+
+</a>
+</div>
+      
+    <div class="icons-format">
+                </div>
+        <div class="post-meta top category-background"></div>
+  </div>
+  <div class="post-content">
+    <div class="post-meta"><span class="post-created"> 02&nbsp;Apr,&nbsp;2025</span></div>
+    <h3 class="post-title"><a href="/news/nozomi-networks-integrates-with-nokia-mxie-for-secure-industry-4-operations" rel="bookmark"><span property="schema:name">Nozomi Networks Integrates with Nokia MXIE for Secure Industry 4.0 Operations</span>
+</a></h3>
+    <div class="post-body"></div>
+  </div>
+</div>  
+</div>
+         </div>
+               <div class="item-columns">
+            <div>
+
+<div data-history-node-id="648" role="article" about="/news/joyride-unveils-neon-iot-for-smart-lightweight-electric-vehicles" typeof="schema:Article" class="node node--type-article node--view-mode-teaser-1 clearfix post-block index-5">
+  <div class="post-thumbnail post-image post-standard">
+    
+            <div class="field field--name-field-image field--type-image field--label-hidden field__item">  <a href="/news/joyride-unveils-neon-iot-for-smart-lightweight-electric-vehicles"><img property="schema:image" src="/sites/default/files/styles/normal_size/public/main-image/IDP%20-%20Joyride%20Unveils%20Neon%20IoT%20for%20Smart%20Lightweight%20Electric%20Vehicles.png?itok=5KfzLGBv" alt="Neon IoT Launch" title="Neon IoT Launch" typeof="foaf:Image" />
+
+</a>
+</div>
+      
+    <div class="icons-format">
+                </div>
+        <div class="post-meta top category-background"></div>
+  </div>
+  <div class="post-content">
+    <div class="post-meta"><span class="post-created"> 25&nbsp;Mar,&nbsp;2025</span></div>
+    <h3 class="post-title"><a href="/news/joyride-unveils-neon-iot-for-smart-lightweight-electric-vehicles" rel="bookmark"><span property="schema:name">Joyride Unveils Neon IoT for Smart Lightweight Electric Vehicles</span>
+</a></h3>
+    <div class="post-body"></div>
+  </div>
+</div>  
+</div>
+         </div>
+               <div class="item-columns">
+            <div>
+
+<div data-history-node-id="647" role="article" about="/news/qualcomm-enhances-iot-and-ai-leadership-with-edge-impulse-acquisition" typeof="schema:Article" class="node node--type-article node--view-mode-teaser-1 clearfix post-block index-6">
+  <div class="post-thumbnail post-image post-standard">
+    
+            <div class="field field--name-field-image field--type-image field--label-hidden field__item">  <a href="/news/qualcomm-enhances-iot-and-ai-leadership-with-edge-impulse-acquisition"><img property="schema:image" src="/sites/default/files/styles/normal_size/public/main-image/IDP%20-%20Qualcomm%20Enhances%20IoT%20and%20AI%20Leadership%20with%20Edge%20Impulse%20Acquisition.png?itok=BU8U9-nX" alt="Qualcomm Acquires Edge Impulse" title="Qualcomm Acquires Edge Impulse" typeof="foaf:Image" />
+
+</a>
+</div>
+      
+    <div class="icons-format">
+                </div>
+        <div class="post-meta top category-background"></div>
+  </div>
+  <div class="post-content">
+    <div class="post-meta"><span class="post-created"> 11&nbsp;Mar,&nbsp;2025</span></div>
+    <h3 class="post-title"><a href="/news/qualcomm-enhances-iot-and-ai-leadership-with-edge-impulse-acquisition" rel="bookmark"><span property="schema:name">Qualcomm Enhances IoT and AI Leadership with Edge Impulse Acquisition</span>
+</a></h3>
+    <div class="post-body"></div>
+  </div>
+</div>  
+</div>
+         </div>
+         </div>
+
+</div>
+
+  
+  
+
+  
+  
+
+  
+  
+</div>
+</div>
+
+    </div>
+  </div>
+
+    </div>
+
+          <div id="node-single-comment" class="block">
+         
+          <div class="comment-count"><span>4 Comments </span></div>
+          
+        <section rel="schema:comment">
+  
+  <a id="comment-71423"></a>
+  
+<article role="article" data-comment-user-id="0" about="/comment/71423" typeof="schema:Comment" class="comment-wrapper comment js-comment by-anonymous clearfix">
+    <span class="hidden" data-comment-timestamp="1620741886"></span>
+
+  <footer class="comment__meta">
+    <article typeof="schema:Person" about="/user/0" class="profile user-profile">
+   <div class="row">
+      
+         
+         <div class="col-md-12 col-xs-12">
+         
+                     <div class="user-picture">
+               
+            </div>
+             
+               
+              
+               </div>
+   </div>  
+</article>
+
+    <p class="comment__author"><span rel="schema:author"><span lang="" typeof="schema:Person" property="schema:name" datatype="">Barkin Alaybeyoglu</span></span>
+</p>
+    <p class="comment__time">11 May 2021</p>
+    <p class="comment__permalink"><a href="/comment/71423#comment-71423" hreflang="en">Permalink</a></p>
+          </footer>
+
+  <div class="comment__content">
+          
+      <h3 property="schema:name" datatype=""><a href="/comment/71423#comment-71423" class="permalink" rel="bookmark" hreflang="en">Hello there, thanks for the…</a></h3>
+      
+        
+            <div property="schema:text" class="field field--name-comment-body field--type-text-long field--label-hidden field__item"><p>Hello there, thanks for the great tutorial. However when I start putting the code to Arduino I start to get error codes starting from &#039; #include &lt;ESP8266WiFi.h&gt; &#039; this part. I do not have an idea what causes the problem but I followed every step on the tutorial. Would like to get a help about it!</p>
+</div>
+      
+          <nav><ul class="links inline"><li class="comment-forbidden"><a href="/login?destination=/projects/iot-based-inventory-management-system-using-load-cell-and-nodemcu%23comment-form">Log in</a> to post comments</li></ul></nav>
+      </div>
+</article>
+
+<div class="indented"><a id="comment-73091"></a>
+  
+<article role="article" data-comment-user-id="0" about="/comment/73091" typeof="schema:Comment" class="comment-wrapper comment js-comment by-anonymous clearfix">
+    <span class="hidden" data-comment-timestamp="1624512664"></span>
+
+  <footer class="comment__meta">
+    <article typeof="schema:Person" about="/user/0" class="profile user-profile">
+   <div class="row">
+      
+         
+         <div class="col-md-12 col-xs-12">
+         
+                     <div class="user-picture">
+               
+            </div>
+             
+               
+              
+               </div>
+   </div>  
+</article>
+
+    <p class="comment__author"><span rel="schema:author"><span lang="" typeof="schema:Person" property="schema:name" datatype="">NEWTON</span></span>
+</p>
+    <p class="comment__time">24 June 2021</p>
+    <p class="comment__permalink"><a href="/comment/73091#comment-73091" hreflang="en">Permalink</a></p>
+              <p class="visually-hidden">In reply to <a href="/comment/71423#comment-71423" class="permalink" rel="bookmark" hreflang="en">Hello there, thanks for the…</a> by <span lang="" typeof="schema:Person" property="schema:name" datatype="">Barkin Alaybeyoglu</span></p>
+      </footer>
+
+  <div class="comment__content">
+          
+      <h3 property="schema:name" datatype=""><a href="/comment/73091#comment-73091" class="permalink" rel="bookmark" hreflang="en">Hi bro, i just started this…</a></h3>
+      
+        
+            <div property="schema:text" class="field field--name-comment-body field--type-text-long field--label-hidden field__item"><p>Hi bro, i just started this project, have you done it succesfully</p>
+</div>
+      
+          <nav><ul class="links inline"><li class="comment-forbidden"><a href="/login?destination=/projects/iot-based-inventory-management-system-using-load-cell-and-nodemcu%23comment-form">Log in</a> to post comments</li></ul></nav>
+      </div>
+</article>
+</div><a id="comment-85662"></a>
+  
+<article role="article" data-comment-user-id="0" about="/comment/85662" typeof="schema:Comment" class="comment-wrapper comment js-comment by-anonymous clearfix">
+    <span class="hidden" data-comment-timestamp="1637137176"></span>
+
+  <footer class="comment__meta">
+    <article typeof="schema:Person" about="/user/0" class="profile user-profile">
+   <div class="row">
+      
+         
+         <div class="col-md-12 col-xs-12">
+         
+                     <div class="user-picture">
+               
+            </div>
+             
+               
+              
+               </div>
+   </div>  
+</article>
+
+    <p class="comment__author"><span rel="schema:author"><span lang="" typeof="schema:Person" property="schema:name" datatype="">Gary Leca</span></span>
+</p>
+    <p class="comment__time">17 November 2021</p>
+    <p class="comment__permalink"><a href="/comment/85662#comment-85662" hreflang="en">Permalink</a></p>
+          </footer>
+
+  <div class="comment__content">
+          
+      <h3 property="schema:name" datatype=""><a href="/comment/85662#comment-85662" class="permalink" rel="bookmark" hreflang="en">Hi
+Thanks for this awesome…</a></h3>
+      
+        
+            <div property="schema:text" class="field field--name-comment-body field--type-text-long field--label-hidden field__item"><p>Hi<br />
+Thanks for this awesome tutorial.<br />
+I got it working fine, but have one issue that&#039;s a problem.<br />
+I get repeated emails from IFTTT ..<br />
+Did everything exactly  (I hope) as per the tutorial.<br />
+Anyone have an idea what could be wrong.</p>
+</div>
+      
+          <nav><ul class="links inline"><li class="comment-forbidden"><a href="/login?destination=/projects/iot-based-inventory-management-system-using-load-cell-and-nodemcu%23comment-form">Log in</a> to post comments</li></ul></nav>
+      </div>
+</article>
+<a id="comment-97874"></a>
+  
+<article role="article" data-comment-user-id="0" about="/comment/97874" typeof="schema:Comment" class="comment-wrapper comment js-comment by-anonymous clearfix">
+    <span class="hidden" data-comment-timestamp="1654238304"></span>
+
+  <footer class="comment__meta">
+    <article typeof="schema:Person" about="/user/0" class="profile user-profile">
+   <div class="row">
+      
+         
+         <div class="col-md-12 col-xs-12">
+         
+                     <div class="user-picture">
+               
+            </div>
+             
+               
+              
+               </div>
+   </div>  
+</article>
+
+    <p class="comment__author"><span rel="schema:author"><span lang="" typeof="schema:Person" property="schema:name" datatype="">maddy</span></span>
+</p>
+    <p class="comment__time">3 June 2022</p>
+    <p class="comment__permalink"><a href="/comment/97874#comment-97874" hreflang="en">Permalink</a></p>
+          </footer>
+
+  <div class="comment__content">
+          
+      <h3 property="schema:name" datatype=""><a href="/comment/97874#comment-97874" class="permalink" rel="bookmark" hreflang="en">how to run this program and…</a></h3>
+      
+        
+            <div property="schema:text" class="field field--name-comment-body field--type-text-long field--label-hidden field__item"><p>how to run this program and send the modules</p>
+</div>
+      
+          <nav><ul class="links inline"><li class="comment-forbidden"><a href="/login?destination=/projects/iot-based-inventory-management-system-using-load-cell-and-nodemcu%23comment-form">Log in</a> to post comments</li></ul></nav>
+      </div>
+</article>
+
+
+  
+</section>
+
+      </div>
+      
+		<div class="margin-bottom-30" style="background: gainsboro; padding: 20px;font-size: 16px;"><ul class="links inline"><li class="comment-forbidden"><a href="/login?destination=/projects/iot-based-inventory-management-system-using-load-cell-and-nodemcu%23comment-form">Log in</a> to post comments</li></ul></div>
+	 
+  </div>
+
+</article>
+
+<!-- End Display article for detail page test -->
+
+    </div>
+  </div>
+
+  </div>
+
+					</div>
+				
+							</div>
+
+		</div>
+
+		<!-- Sidebar Left -->
+				<!-- End Sidebar Left -->
+
+		<!-- Sidebar Right -->
+					
+							 
+
+			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 sidebar sidebar-right theiaStickySidebar">
+				<div class="sidebar-inner">
+					  <div>
+    <div class="views-element-container block block-views block-views-blockarticle-blocks-block-10" id="block-views-block-article-blocks-block-10">
+  
+      <h2 class="block-title" ><span>Recent Projects</span></h2>
+    
+      <div class="content block-content">
+      <div><div class="list-border js-view-dom-id-fffe8d3f00c16833a7d44290203d2c73f04e718df69d8898800c72debe0bfd32">
+  
+  
+  
+
+  
+  
+  
+
+  <div class="item-list list-views">
+    <ul>
+      	      <li class="view-list-item" >
+
+<div data-history-node-id="656" role="article" about="/news/win-source-to-showcase-in-electronica-2026" typeof="schema:Article" class="node node--type-article node--view-mode-small clearfix small-post post-block">
+  <div class="post-image">
+            <div class="field field--name-field-image field--type-image field--label-hidden field__item">  <a href="/news/win-source-to-showcase-in-electronica-2026"><img property="schema:image" src="/sites/default/files/styles/small/public/main-image/electronica-2026.jpg?itok=zQWU8tGP" alt="WIN SOURCE to Showcase in electronica 2026" title="WIN SOURCE to Showcase in electronica 2026" typeof="foaf:Image" />
+
+</a>
+</div>
+      </div>
+  <div class="post-content">    
+    <div class="post-meta"><span class="post-created"> 26&nbsp;Oct,&nbsp;2026</span> </div>
+    <div class="post-title"><a href="/news/win-source-to-showcase-in-electronica-2026"><span property="schema:name">WIN SOURCE to Showcase Electronic Component Sourcing and Supply Chain Solutions at electronica 2026</span>
+</a></div> 
+   </div>
+</div>  
+</li>
+	  	    	      <li class="view-list-item" >
+
+<div data-history-node-id="655" role="article" about="/news/synaptics-launches-veros-wi-fi-7-soc-family-designed-for-iot-applications" typeof="schema:Article" class="node node--type-article node--view-mode-small clearfix small-post post-block">
+  <div class="post-image">
+            <div class="field field--name-field-image field--type-image field--label-hidden field__item">  <a href="/news/synaptics-launches-veros-wi-fi-7-soc-family-designed-for-iot-applications"><img property="schema:image" src="/sites/default/files/styles/small/public/main-image/IDP%20-%20Synaptics%20Launches%20Veros%20Wi-Fi%207%20SoC%20Family%20Designed%20for%20IoT%20Applications.png?itok=UlMKsgSJ" alt="Synaptics Launches Veros Wi-Fi 7 SoC Family" title="Synaptics Launches Veros Wi-Fi 7 SoC Family" typeof="foaf:Image" />
+
+</a>
+</div>
+      </div>
+  <div class="post-content">    
+    <div class="post-meta"><span class="post-created"> 06&nbsp;May,&nbsp;2025</span> </div>
+    <div class="post-title"><a href="/news/synaptics-launches-veros-wi-fi-7-soc-family-designed-for-iot-applications"><span property="schema:name">Synaptics Launches Veros Wi-Fi 7 SoC Family Designed for IoT Applications</span>
+</a></div> 
+   </div>
+</div>  
+</li>
+	  	    	      <li class="view-list-item" >
+
+<div data-history-node-id="654" role="article" about="/news/sentrycs-and-xtend-partner-to-strengthen-drone-security-for-defense-and-special-forces" typeof="schema:Article" class="node node--type-article node--view-mode-small clearfix small-post post-block">
+  <div class="post-image">
+            <div class="field field--name-field-image field--type-image field--label-hidden field__item">  <a href="/news/sentrycs-and-xtend-partner-to-strengthen-drone-security-for-defense-and-special-forces"><img property="schema:image" src="/sites/default/files/styles/small/public/main-image/IDP%20-%20Sentrycs%20and%20Xtend.png?itok=YqzXqc0t" alt="Sentrycs Partners With Xtend for Drone Security Enhancement" title="Sentrycs Partners With Xtend for Drone Security Enhancement" typeof="foaf:Image" />
+
+</a>
+</div>
+      </div>
+  <div class="post-content">    
+    <div class="post-meta"><span class="post-created"> 24&nbsp;Apr,&nbsp;2025</span> </div>
+    <div class="post-title"><a href="/news/sentrycs-and-xtend-partner-to-strengthen-drone-security-for-defense-and-special-forces"><span property="schema:name">Sentrycs and Xtend Partner to Strengthen Drone Security for Defense and Special Forces</span>
+</a></div> 
+   </div>
+</div>  
+</li>
+	  	    	      <li class="view-list-item" >
+
+<div data-history-node-id="653" role="article" about="/news/csignum-raises-6m-euro-in-series-a-funding-to-expand-underwater-iot-communication-technology" typeof="schema:Article" class="node node--type-article node--view-mode-small clearfix small-post post-block">
+  <div class="post-image">
+            <div class="field field--name-field-image field--type-image field--label-hidden field__item">  <a href="/news/csignum-raises-6m-euro-in-series-a-funding-to-expand-underwater-iot-communication-technology"><img property="schema:image" src="/sites/default/files/styles/small/public/main-image/IDP%20-%20CSignum%20Raises%20%C2%A36M%20Series%20A%20to%20Expand%20Underwater%20IoT%20Communication%20Technology.png?itok=w7cWMc14" alt="CSignum Secures £6M in Series A Funding" title="CSignum Secures £6M in Series A Funding" typeof="foaf:Image" />
+
+</a>
+</div>
+      </div>
+  <div class="post-content">    
+    <div class="post-meta"><span class="post-created"> 22&nbsp;Apr,&nbsp;2025</span> </div>
+    <div class="post-title"><a href="/news/csignum-raises-6m-euro-in-series-a-funding-to-expand-underwater-iot-communication-technology"><span property="schema:name">CSignum Raises £6M in Series A Funding to Expand Underwater IoT Communication Technology</span>
+</a></div> 
+   </div>
+</div>  
+</li>
+	  	    	      <li class="view-list-item" >
+
+<div data-history-node-id="652" role="article" about="/news/aaeon-and-fetci-launch-ai-automatic-license-plate-recognition-transport-solution-across-asia" typeof="schema:Article" class="node node--type-article node--view-mode-small clearfix small-post post-block">
+  <div class="post-image">
+            <div class="field field--name-field-image field--type-image field--label-hidden field__item">  <a href="/news/aaeon-and-fetci-launch-ai-automatic-license-plate-recognition-transport-solution-across-asia"><img property="schema:image" src="/sites/default/files/styles/small/public/main-image/IDP%20-%20AAEON%20and%20FETCi%20Launch%20AI%20Automatic%20License%20Plate%20Recognition%20Transport%20Solution%20Across%20Asia.png?itok=5sdPeYSJ" alt="AAEON and FETCi Collaborates to Provide Smart Transport Services Across Asia " title="AAEON and FETCi Collaborates to Provide Smart Transport Services Across Asia " typeof="foaf:Image" />
+
+</a>
+</div>
+      </div>
+  <div class="post-content">    
+    <div class="post-meta"><span class="post-created"> 17&nbsp;Apr,&nbsp;2025</span> </div>
+    <div class="post-title"><a href="/news/aaeon-and-fetci-launch-ai-automatic-license-plate-recognition-transport-solution-across-asia"><span property="schema:name">AAEON and FETCi Launch AI Automatic License Plate Recognition Transport Solution Across Asia</span>
+</a></div> 
+   </div>
+</div>  
+</li>
+	  	      </ul>
+</div>
+
+  
+  
+
+  
+  
+
+  
+  
+</div>
+</div>
+
+    </div>
+  </div>
+
+  </div>
+
+				</div>
+			</div>
+				<!-- End Sidebar Right -->
+		
+	</div>
+</div>
+
+
+			</div>
+		</div>			
+	</div>
+
+	
+
+	 
+	  
+<footer id="footer" class="footer">
+  <div class="footer-inner">
+    
+         
+     <div class="footer-center">
+        <div class="container">      
+           <div class="row">
+                              <div class="footer-first col-lg-3 col-md-3 col-sm-12 col-xs-12 column">
+                    <div>
+    <div id="block-aboutusfooter" class="block block-block-content block-block-content55e98a9f-c0d2-48ef-9c07-5ebafc325529 no-title">
+  
+    
+      <div class="content block-content">
+      
+            <div class="field field--name-body field--type-text-with-summary field--label-hidden field__item"><p><img alt="iotdesignpro logo" data-entity-type="file" data-entity-uuid="fcbf938c-2024-4ec4-8dc6-23ead686ec2a" src="/sites/default/files/inline-images/IOT_PNG.png" /></p>
+
+<p> </p>
+
+<p class="text-align-justify">IoTDesignPro is a one-of-a-kind, Internet of Things Community focused on exploring the latest advancements and technologies in the field of IoT.</p></div>
+      
+    </div>
+  </div>
+
+  </div>
+
+                </div> 
+              
+                             <div class="footer-second col-lg-3 col-md-3 col-sm-12 col-xs-12 column">
+                    <div>
+    <div id="block-popularhardwareplatforms" class="block block-block-content block-block-contente7081208-7571-4617-adc0-831136b0d7eb">
+  
+      <h2 class="block-title" ><span>Popular Hardware Platforms</span></h2>
+    
+      <div class="content block-content">
+      
+            <div class="field field--name-body field--type-text-with-summary field--label-hidden field__item"><ul><li><a href="https://iotdesignpro.com/raspberry-pi-projects">Raspberry Pi</a></li>
+	<li><a href="https://iotdesignpro.com/iot-arduino-projects">Arduino</a></li>
+	<li><a href="https://iotdesignpro.com/esp8266-projects">ESP8266</a></li>
+	<li><a href="https://iotdesignpro.com/esp32-projects">ESP32</a></li>
+</ul></div>
+      
+    </div>
+  </div>
+
+  </div>
+
+                </div> 
+              
+                              <div class="footer-third col-lg-3 col-md-3 col-sm-12 col-xs-12 column">
+                    <div>
+    <div id="block-footer" class="block block-block-content block-block-content13596105-d812-4308-83e4-190a92da82c6">
+  
+      <h2 class="block-title" ><span>Information</span></h2>
+    
+      <div class="content block-content">
+      
+            <div class="field field--name-body field--type-text-with-summary field--label-hidden field__item"><div class="row">
+    <div class="col-sm-12" style="padding-left: 10px;">
+       <ul class="menu">
+<li><a href="https://iotdesignpro.com/about-us">About Us</a></li>
+	  <li><a href="https://iotdesignpro.com/contact">Contact Us</a></li>
+	  <li><a href="https://iotdesignpro.com/cookie-policy">Cookie Policy</a></li>
+	  <li><a href="https://iotdesignpro.com/privacy-policy"> Privacy Policy</a></li>
+       </ul>      
+    </div>
+</div>  </div>
+      
+    </div>
+  </div>
+
+  </div>
+
+                </div> 
+              
+                               <div class="footer-four col-lg-3 col-md-3 col-sm-12 col-xs-12 column">
+                    <div>
+    <div class="simplenews-subscriptions-block-b08db74e-8a64-4299-9c1b-92675b81cc4a simplenews-subscriber-form block block-simplenews block-simplenews-subscription-block" data-drupal-selector="simplenews-subscriptions-block-b08db74e-8a64-4299-9c1b-92675b81cc4a" id="block-simplenewssubscription">
+  
+      <h2 class="block-title" ><span>Newsletter subscription</span></h2>
+    
+      <div class="content block-content">
+      <form action="/projects/iot-based-inventory-management-system-using-load-cell-and-nodemcu" method="post" id="simplenews-subscriptions-block-b08db74e-8a64-4299-9c1b-92675b81cc4a" accept-charset="UTF-8">
+  <div class="field--type-simplenews-subscription field--name-subscriptions field--widget-simplenews-subscription-select js-form-wrapper form-wrapper" data-drupal-selector="edit-subscriptions-wrapper" id="edit-subscriptions-wrapper"></div>
+<div id="edit-message" class="js-form-item form-item js-form-type-item form-item-message js-form-item-message form-no-label">
+        Stay Informed - Subscribe to our Newsletter.
+        </div>
+<input autocomplete="off" data-drupal-selector="form-odwsy-fdynihllwsh5u-5h7o5jptg08iymourwlpqvw" type="hidden" name="form_build_id" value="form-ODWsY_FDYNIHllwSH5u-5H7o5JPtG08iYMoUrwLPQVw" />
+<input data-drupal-selector="edit-simplenews-subscriptions-block-b08db74e-8a64-4299-9c1b-92675b81cc4a" type="hidden" name="form_id" value="simplenews_subscriptions_block_b08db74e-8a64-4299-9c1b-92675b81cc4a" />
+<div class="field--type-email field--name-mail field--widget-email-default js-form-wrapper form-wrapper" data-drupal-selector="edit-mail-wrapper" id="edit-mail-wrapper">      <div class="js-form-item form-item js-form-type-email form-item-mail-0-value js-form-item-mail-0-value">
+      <label for="edit-mail-0-value" class="js-form-required form-required">Email</label>
+        <input data-drupal-selector="edit-mail-0-value" aria-describedby="edit-mail-0-value--description" type="email" id="edit-mail-0-value" name="mail[0][value]" value="" size="60" maxlength="254" placeholder="" class="form-email required" required="required" aria-required="true" />
+
+            <div id="edit-mail-0-value--description" class="description">
+      The subscriber's email address.
+    </div>
+  </div>
+
+  </div>
+<div data-drupal-selector="edit-actions" class="form-actions js-form-wrapper form-wrapper" id="edit-actions--2"><input data-drupal-selector="edit-subscribe" type="submit" id="edit-subscribe" name="op" value="Subscribe" class="button js-form-submit form-submit" />
+</div>
+
+</form>
+
+    </div>
+  </div>
+
+  </div>
+
+                </div> 
+                         </div>   
+        </div>
+    </div>  
+
+    
+  </div>   
+
+      <div class="copyright">
+      <div class="container">
+        <div class="copyright-inner">
+              <div>
+    <div id="block-copyright" class="block block-block-content block-block-content6f2db31c-0bfc-4ce0-bafd-99e085f7994c no-title">
+  
+    
+      <div class="content block-content">
+      
+            <div class="field field--name-body field--type-text-with-summary field--label-hidden field__item"><p>Copyright © IoTDesignPro 2023. All Rights Reserved.</p>
+</div>
+      
+    </div>
+  </div>
+
+  </div>
+
+        </div>   
+      </div>   
+    </div>
+   
+</footer>
+
+
+	
+</div>
+
+
+  </div>
+
+    
+    <script src="/sites/default/files/js/js_nUqBRw6yq_3wwg9c-Xwsp5hKoqebTqnizkEPAtdMdFY.js"></script>
+
+        
+  </body>
+</html>

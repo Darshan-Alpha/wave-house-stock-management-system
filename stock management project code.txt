@@ -1,0 +1,157 @@
+/****************************************************
+   IoT-Based Inventory Monitoring System (Final V3)
+   NodeMCU + HX711 + OLED + Blynk IoT
+   Author: Rajesh Srinivas
+   Version: Stable (20g = 1 item)
+****************************************************/
+
+#define BLYNK_TEMPLATE_ID "TMPL3i_smEUqu"
+#define BLYNK_TEMPLATE_NAME "Inventory Monitor"
+#define BLYNK_AUTH_TOKEN "cq7DFJKViBC1ctcVs0wY-QDjqkEX-o8z"
+
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+#include "HX711.h"
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
+
+// -----------------------------
+// WiFi + Blynk Credentials
+// -----------------------------
+char auth[] = BLYNK_AUTH_TOKEN;
+char ssid[] = "RAJESHSRINIVAS 1311";   // 🔹 Your WiFi name
+char pass[] = "12345678";              // 🔹 Your WiFi password
+
+// -----------------------------
+// OLED Display Setup
+// -----------------------------
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+#define OLED_RESET -1
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+// -----------------------------
+// HX711 Load Cell Setup
+// -----------------------------
+#define DOUT D5   // HX711 DT pin
+#define CLK  D6   // HX711 SCK pin
+HX711 scale;
+
+// -----------------------------
+// Variables
+// -----------------------------
+// if previous was -7050.0
+
+float calibration_factor = -193900.0;
+ 
+
+   // 🔹 Adjust after calibration
+float weight = 0;
+float itemWeight = 0.02;              // Each item = 20 grams (0.02 kg)
+int itemCount = 0;
+float lowStockThreshold = 0.2;        // Low stock alert at 0.2 kg
+float previousWeight = 0;             // For stability check
+
+// -----------------------------
+// Blynk Timer
+// -----------------------------
+BlynkTimer timer;
+
+// -----------------------------
+// Function to Send Data to Blynk + OLED
+// -----------------------------
+void sendToBlynk() {
+  float newWeight = scale.get_units(10);  // Average of 10 readings
+  if (newWeight < 0) newWeight = 0;
+
+  // Optional: Only update if weight changes > 20g (0.02 kg)
+  if (abs(newWeight - previousWeight) > 0.02) {
+    weight = newWeight;
+    previousWeight = newWeight;
+  }
+
+  // Calculate item count (rounded)
+  itemCount = round(weight / itemWeight);
+
+  // Send data to Blynk
+  Blynk.virtualWrite(V0, weight);     // Weight in kg
+  Blynk.virtualWrite(V1, itemCount);  // Item count
+
+  // Display on OLED
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(SSD1306_WHITE);
+
+  display.setCursor(0, 2);
+  display.println("Inventory Monitor");
+
+  display.setCursor(0, 20);
+  display.print("Weight: ");
+  display.print(weight, 2);
+  display.println(" kg");
+
+  display.setCursor(0, 35);
+  display.print("Items: ");
+  display.print(itemCount);
+
+  display.setCursor(0, 50);
+  display.print("Per Item: 20g");
+  display.display();
+
+  // Low stock alert
+  if (weight < lowStockThreshold) {
+    Blynk.logEvent("low_stock", "⚠️ Inventory running low!");
+  }
+
+  // Debug info
+  Serial.print("Weight: ");
+  Serial.print(weight, 2);
+  Serial.print(" kg | Items: ");
+  Serial.println(itemCount);
+}
+
+// -----------------------------
+// Setup
+// -----------------------------
+void setup() {
+  Serial.begin(115200);
+  Serial.println("Inventory System Starting...");
+
+  // Initialize OLED
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
+    Serial.println("OLED not found! Check wiring or I2C address.");
+    while (true);
+  }
+
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(SSD1306_WHITE);
+  display.setCursor(10, 20);
+  display.println("Connecting WiFi...");
+  display.display();
+
+  // Connect to Blynk Cloud
+  Blynk.begin(auth, ssid, pass);
+
+  // Setup HX711
+  scale.begin(DOUT, CLK);
+  scale.set_scale(calibration_factor); // Set calibration factor
+  scale.tare();                        // Reset to zero
+
+  display.clearDisplay();
+  display.setCursor(10, 20);
+  display.println("System Ready!");
+  display.display();
+
+  // Timer to send data every 2 seconds
+  timer.setInterval(2000L, sendToBlynk);
+}
+
+// -----------------------------
+// Main Loop
+// -----------------------------
+void loop() {
+  Blynk.run();
+  timer.run();
+}
